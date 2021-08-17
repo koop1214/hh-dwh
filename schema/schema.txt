@@ -1,0 +1,78 @@
+# Справочник дат
+dim_dates
+-
+id PK int          # id
+date     date      # дата
+year     smallint  # год
+quarter  smallint  # квартал
+month    smallint  # месяц
+week     smallint  # номер недели
+week_day smallint  # день недели
+
+# Справочник типов вакансий
+dim_types
+-
+id PK AUTOINCREMENT int # id
+code varchar(20) UNIQUE # код типа вакансии
+name varchar(200)       # название
+
+# Справочник регионов размещения вакансии
+dim_areas
+-
+id PK AUTOINCREMENT int  # id
+code varchar(20) UNIQUE  # код региона
+name varchar(200)        # название региона
+
+# Справочник графиков работы
+dim_schedules
+-
+id PK AUTOINCREMENT int  # id
+code varchar(20) UNIQUE  # код
+name varchar(200)        # название
+
+# Справочник грейдов
+dim_grades
+-
+id PK AUTOINCREMENT int  # id
+name varchar(200)        # название
+aliases text             # синонимы
+
+# Справочник специальностей
+dim_specialities
+-
+id PK AUTOINCREMENT int  # id
+name varchar(200)        # название
+aliases text             # синонимы
+
+# Справочник работодателей
+dim_employers
+-
+id PK AUTOINCREMENT int  # id
+code varchar(20) UNIQUE  # код компании
+name varchar(200)        # название компании
+trusted boolean          # флаг, показывающий, прошла ли компания проверку на сайте
+
+ #
+fact_vacancies
+-
+id PK int                                           # id
+name varchar(200)                                   # название вакансии
+created_date_id int INDEX FK >- dim_dates.id        # дата создания
+speciality_id int INDEX FK >- dim_specialities.id   # id специальности
+grade_id int default=0 INDEX FK >- dim_grades.id    # id уровней
+area_id int INDEX FK >- dim_areas.id                # id региона
+employer_id int INDEX FK >- dim_employers.id        # id работодателя
+schedule_id int INDEX FK >- dim_schedules.id        # id графика работы
+type_id int INDEX FK >- dim_types.id                # id типа вакансии
+premium boolean                                     # является ли данная вакансия премиум-вакансией
+has_test boolean                                    # Информация о наличии прикрепленного тестового задании к вакансии
+response_letter_required boolean                    # Обязательно ли заполнять сообщение при отклике на вакансию
+salary_from int NULL                                # Нижняя граница вилки оклада в рублях после вычета налогов
+salary_to int null                                  # Верхняя граница вилки оклада в рублях после вычета налогов
+
+# Курсы валют
+exchange_rates
+-
+date  PK   date        # дата
+currency PK varchar(3) # ISO Букв. код валюты
+rate numeric(16,8)     # курс валюты
