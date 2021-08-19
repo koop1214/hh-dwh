@@ -31,7 +31,7 @@
 
 ![](./schema/schema.png)
 
-Подробное описание полей можно посмотреть [здесь](schema/README.md).
+Подробное описание полей можно посмотреть [здесь](schema/README.md). Предполагается, что таблицы измерений не меняются (SCD-0).
 
 ### Business Layer
 Для построения [дашборда](https://datastudio.google.com/s/hWPoRL-dNMo) используется _Google Data Studio_.
