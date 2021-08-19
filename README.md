@@ -34,7 +34,7 @@
 Подробное описание полей можно посмотреть [здесь](schema/README.md).
 
 ### Business Layer
-Для построения [дашборда](https://datastudio.google.com/s/lvckrm_d8wg) используется _Google Data Studio_.
+Для построения [дашборда](https://datastudio.google.com/s/hWPoRL-dNMo) используется _Google Data Studio_.
 
 ![](./docs/dashboard.png)
 
