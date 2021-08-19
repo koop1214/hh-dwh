@@ -1,0 +1,11 @@
+[worker]
+keep_alive=True
+wait_interval=3
+
+[DbConfig]
+host=127.0.0.1
+port=25432
+user=postgres
+database=hh
+#conn_string=dialect+driver://username:password@host:port/database
+conn_string=postgresql://postgres@localhost:25432/hh
