@@ -99,12 +99,10 @@ class ExchangeRatesTask(SkipOrCopyToTable):
 
     def rows(self):
         with self.input().open() as xml_file:
-            locale.setlocale(locale.LC_NUMERIC, '')
-
             df = pd.read_xml(xml_file, encoding='windows-1251')
             df.rename(columns={'CharCode': 'currency'}, inplace=True)
             df['date'] = self.date
-            df['rate'] = df['Value'].apply(locale.atof)
+            df['rate'] = df['Value'].str.replace(',', '.').astype(float)
             df['rate'] = df['rate'] / df['Nominal']
 
             columns = self.table_bound.columns
