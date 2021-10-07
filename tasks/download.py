@@ -91,7 +91,7 @@ class DownLoadVacanciesTask(luigi.Task):
                                                   int(item['response_letter_required']),
                                                   item['salary']['from'] if item['salary'] else '',
                                                   item['salary']['to'] if item['salary'] else '',
-                                                  int(item['salary']['gross']) if item['salary'] else 0,
+                                                  int(item['salary']['gross']) if item['salary'] and item['salary']['gross'] is not None else 0,
                                                   item['salary']['currency'] if item['salary'] else '',
                                                   item['created_at']])
 
